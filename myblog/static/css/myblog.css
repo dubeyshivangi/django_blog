@@ -48,19 +48,16 @@ hr{
 }
 
 #con{
-    /* background-image: url('../img/jumbotron-bkg-2.jpg'); */
     margin-left: 50px;
     padding-left: 10%;
     text-align: center;
   }
 #con1{
-    /* background-image: url('../img/jumbotron-bkg-2.jpg'); */
     /* margin-left: 50px; */
     padding-left: 65%;
     text-align: center;
   }
 #cmmnt{
-    /* background-image: url('../img/jumbotron-bkg-2.jpg'); */
     /* margin-left: 50px; */
     color: orange;
   }
