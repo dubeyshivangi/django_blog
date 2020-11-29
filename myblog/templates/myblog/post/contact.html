@@ -1,0 +1,23 @@
+{% extends "myblog/base.html" %}
+{% block title %}Contact Us{% endblock %}
+{% block content %}
+<hr>
+    <div class="container" id="con">
+    <div style="background:lightskyblue !important" class="jumbotron" id =  "home">
+      
+{% comment %} print("dd")
+print(post.sent) {% endcomment %}
+    {% if s %}
+        <h2>Thank you for contacting, Your Message is successfully Delivered!! We will contact you soon :)</h2>
+    {% else	%}
+        <h2><strong>CONTACT US</strong></h2>
+        <hr width="500px">
+        <form action="." method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <input class="button" type="submit" value="Submit">
+        </form>
+    {% endif %}
+    </div>
+    </div>
+{% endblock %}

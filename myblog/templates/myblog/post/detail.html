@@ -1,0 +1,64 @@
+{% extends "myblog/base.html" %}
+{% block title %} {{ post.title	}} {% endblock %}
+{% block content %}
+<hr>
+    <div class="container" id="con">
+    <div style="background:lightskyblue !important" class="jumbotron" id =  "home">
+      
+	<h2>{{ post.title }}</h2>
+    <a href="{% url "myblog:post_share" post.id %}"> Share	this post 
+    <i class="fa fa-share-alt" style="font-size:24px"></i>
+    </a>
+	<p class="date">
+	Published {{ post.publish }} by	{{ post.author }}
+    <hr width="600">
+	</p> {{	post.body|linebreaks }}
+    <hr style="height:2px;border-width:0;color:black;background-color:gray">
+
+    {% with	comments.count as total_comments %}
+		<h2>
+				Total {{	total_comments	}}	comment{{	total_comments|pluralize	}} 
+		</h2>
+        <p  class="date"> To add new comment <i class="fa fa-angle-double-down" style="font-size:24px"></i>
+</p>  
+    {%	endwith	%}
+    {%	for	comment	in	comments	%}
+		<div	class="comment">
+				
+				<h2>{{	comment.body|linebreaks	}}</h2>
+                <span id = "cmmnt">
+						{% comment %} Comment	{{	forloop.counter	}} {% endcomment %}
+                        	by	<strong>{{	comment.name	}}</strong>
+						{{	comment.created	}}
+				</span>
+                <hr width="200">
+		</div>
+    {%	empty	%}
+	    <p>There	are	no	comments	yet.</p>
+    
+    {%	endfor	%}
+    
+    </div>
+    {% comment %} </div> {% endcomment %}
+    </div>
+    <div class="container" id="con">
+    {% comment %} <div class="center"> {% endcomment %}
+    <div style="background:mediumslateblue !important" class="jumbotron" id =  "home">
+      
+    {%	if	new_comment	%}
+        <div class="alert alert-success">
+        <h2><strong>Success!</strong> Your	comment	has	been	added.</h2>
+        </div>
+		
+    {%	else	%}
+		<h2>Add	a	new	comment</h2>
+        <hr>
+		<form	action="."	method="post">
+				{{	comment_form.as_p	}}
+				{%	csrf_token	%}
+				<p><input class="button" type="submit"	value="Add	comment"></p>
+		</form>
+    {%	endif	%}
+    </div>
+    </div>
+{% endblock %}

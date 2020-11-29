@@ -1,0 +1,60 @@
+{%	extends	"myblog/base.html" %}
+{%	block title	%}My Blog{%	endblock %}
+{%	block content %}
+<button onclick="topFunction()" id="myBtn" title="Go to top">Back To Top</button>
+
+   <div class="container" id="con">
+    {% comment %} <div style="background:transparent !important" class="jumbotron"> {% endcomment %}
+     
+    <h1>Technical Blogs</h1>
+    <div id="con1">{% include "pagination.html" with page=page_obj %}</div>
+    {% comment %} </div> {% endcomment %}
+        {% comment %} <hr> {% endcomment %}
+    <div class="container">
+    <div style="background:transparent" class="jumbotron">
+        
+        {% for post	in posts %}
+            
+            <div style="background:lightskyblue" class="jumbotron">
+            <h2>
+            <a href="{{ post.get_absolute_url }}">
+            {{ post.title }}
+            </a>
+            </h2>
+            <a href="{% url "myblog:post_share" post.id %}"> Share	this post 
+            <i class="fa fa-share-alt" style="font-size:24px"></i>
+            </a>
+            
+            <p class="date">Published {{ post.publish }} by {{ post.author }} </p>
+            <hr>
+            {{ post.body|truncatewords:10|linebreaks }}
+            
+            </div>
+        {%	endfor	%}
+    </div>
+    </div>
+    
+    </div>
+    <script>
+//Get the button
+var mybutton = document.getElementById("myBtn");
+
+// When the user scrolls down 20px from the top of the document, show the button
+window.onscroll = function() {scrollFunction()};
+
+function scrollFunction() {
+  if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+    mybutton.style.display = "block";
+  } else {
+    mybutton.style.display = "none";
+  }
+}
+
+// When the user clicks on the button, scroll to the top of the document
+function topFunction() {
+  document.body.scrollTop = 0;
+  document.documentElement.scrollTop = 0;
+}
+</script>
+
+{%	endblock	%}

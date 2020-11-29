@@ -1,0 +1,26 @@
+{% extends "myblog/base.html" %}
+{% block title %}Share	a	post{% endblock %}
+{% block content %}
+<hr>
+    <div class="container" id="con">
+    <div style="background:lightskyblue !important" class="jumbotron" id =  "home">
+      
+{% comment %} print("dd")
+print(post.sent) {% endcomment %}
+    {% if sent %}
+        <h2>E-mail	successfully	sent</h2>
+        <p>
+            "{{	post.title	}}"	was	successfully	sent	to	{{ form.cleaned_data.to }}.
+        </p>
+    {% else	%}
+        <h2>Share	"{{	post.title	}}"	by	e-mail</h2>
+        <hr width="500px">
+        <form action="." method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <input class="button" type="submit" value="Send e-mail">
+        </form>
+    {% endif %}
+    </div>
+    </div>
+{% endblock %}
