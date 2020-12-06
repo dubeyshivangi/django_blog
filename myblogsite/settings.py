@@ -23,7 +23,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # SECRET_KEY = 'bzn*=rv!%z97phm1hfn4lg462wjt2-l7a_ht14gxh!0f&^+_uf'
 SECRET_KEY = os.environ.get('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = (os.environ.get('DEBUG')=='True')
 # DEBUG = os.environ.get('Debug_val')
 
 ALLOWED_HOSTS = ['blogsite1910.herokuapp.com']
@@ -116,10 +116,10 @@ USE_L10N = True
 USE_TZ = True
 
 EMAIL_HOST	=	'smtp.gmail.com'
-# EMAIL_HOST_USER	=	'dubeyshivangi1910@gmail.com'
-EMAIL_HOST_USER = os.environ.get('EMAIL_HOST_USER')
-# EMAIL_HOST_PASSWORD	=	'ayush@9911'
-EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD')
+EMAIL_HOST_USER	=	'dubeyshivangi1910@gmail.com'
+# EMAIL_HOST_USER = os.environ.get('EMAIL_HOST_USER')
+EMAIL_HOST_PASSWORD	=	'ayush@9911'
+# EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD')
 EMAIL_PORT	=	587
 EMAIL_USE_TLS	=	True
 
